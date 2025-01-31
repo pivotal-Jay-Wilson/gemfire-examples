@@ -2,13 +2,13 @@ from datetime import datetime
 from flask import Flask, send_from_directory, request, jsonify, url_for
 import embeddings_processor
 import requests
-from os import environ
+import os
 
 app = Flask(__name__, static_url_path='', static_folder="../frontend/build")
 app.config['IMAGES_FOLDER'] = 'static/images'
 app.add_url_rule('/images/<path:filename>', endpoint='serve_images')
 # base_url = "http://localhost:8081/gemfire-vectordb/v1"
-base_url == environ.get('BASE_URL')
+base_url = os.getenv('BASE_URL')
 
 @app.route('/')
 def index():
